@@ -1,0 +1,50 @@
+from pathlib import Path
+for i in range(3):
+    print("WARNING: you should copy your folder before you run this code")
+target=Path(str(input(">>> enter target path (without '') --> ")))
+
+suffix={"pic":("png","svg","jpg","webp"),
+        "media":("mp4","mp3"),
+        "text":("txt")
+        }
+
+built_folder= {}
+count_moved=0
+count_built=0
+def new_folder(name):
+    global count_built
+    new = target / name
+    built_folder[name]=new.resolve()
+    new.mkdir(exist_ok=True)# mkdir()：建立資料夾
+    count_built +=1
+
+
+for item in target.iterdir(): #遍歷資料夾檔案
+
+    if item.is_file():
+        category=(item.suffix[1:]).lower()
+
+        for sfx in suffix:
+
+            if category in suffix[sfx]: #需要做動作的
+
+                if sfx not in built_folder:
+                    new_folder(sfx)
+                target_path=(built_folder[sfx] / item.name) #避免重檔名
+
+                if target_path.exists():
+                    count_copy=1
+                    new_target_path=target_path
+                    while new_target_path.exists():
+                        new_target_path = built_folder[sfx] / f"{item.stem}_copy{count_copy}{item.suffix}"
+                        i+=1
+                    target_path=new_target_path
+
+                item.rename(target_path)
+                count_moved+=1
+
+print("="*40)
+print("finish cleaning")
+print(f"files moved:  {count_moved}")
+print(f"folder built: {count_built}")
+print("thanks for using!")
