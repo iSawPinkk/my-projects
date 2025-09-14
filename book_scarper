@@ -108,7 +108,7 @@ while ctgy_url: #get items
     else:
         ctgy_url=None
 
-#創建一個csv黨已儲存結果
+#創建一個csv檔已儲存結果
 csv_file= rf"C:\Users\Ryan Lin\Desktop\{inp}_books.csv"
 with open(csv_file,"w",newline="",encoding="utf-8") as f:
     writer= csv.DictWriter(f, fieldnames=["book_title","price(NTD)","rating"])
