@@ -3,9 +3,13 @@ for i in range(3):
     print("WARNING: you should copy your folder before you run this code")
 target=Path(str(input(">>> enter target path (without '') --> ")))
 
-suffix={"pic":("png","svg","jpg","webp"),
-        "media":("mp4","mp3"),
-        "text":("txt")
+suffix={"pic":("png","svg","jpg","webp","jpeg","bmp"),
+        "media":("mp4","mp3","wav","mov"),
+        "text":("txt","pdf","docx","srt"),
+        "csv":("csv"),
+        "scratch":("sb3","sprite3"),
+        "powerpoint":("pptx"),
+        "application":("exe","lnk")
         }
 
 built_folder= {}
